@@ -5,16 +5,20 @@ from nose.tools import assert_equal
 
 class MyTestClass(object):
 
+    @classmethod
     def setUpTest(self):
         pass
 
     def test_function(self):
         pass
 
+    def not_a_you_know_what(self):
+        pass
+
 
 def test_get_functions():
     functions = regression.functions_of_class(MyTestClass)
-    assert_equal(set(functions), set(['test_function', 'setUpTest']))
+    assert_equal(set(functions), set(['test_function', 'not_a_you_know_what']))
 
 def test_get_functions_from_example():
     functions = regression.functions_of_class(example_tests.ConvertTest)
