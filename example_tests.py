@@ -12,7 +12,7 @@ class RegressionCheck(pikeblock.Case):
         self.rows = [{'Commodity': 'Cheese',
                       'Origin': 'Moon',
                       'Figure': 2.0,
-                      'Sector': '001'},
+                      'Sector': '000'},
                      {'Commodity': 'Rust',
                       'Origin': 'Mars',
                       'Figure': 12.0,
@@ -29,7 +29,12 @@ class RegressionCheck(pikeblock.Case):
     def sector(self):
         return set(row['Sector'] for row in self.rows)
 
-RegressionCheck()
+x = RegressionCheck()
+#print "WRITE"
+#print x.write_all_to_file()
+print "VERIFY"
+print x.verify_all_from_file()
+
 
 class ConvertTest(unittest.TestCase):
     @classmethod
