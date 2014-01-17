@@ -2,6 +2,7 @@ import regression
 import example_tests
 from nose.tools import assert_equal
 
+function_type = type(lambda x: None)
 
 class MyTestClass(object):
 
@@ -19,6 +20,14 @@ class MyTestClass(object):
 def test_get_functions():
     functions = regression.functions_of_class(MyTestClass)
     assert_equal(set(functions), set(['test_function', 'not_a_you_know_what']))
+    assert type(functions['test_function']) == function_type
+
+
+def test_get_tests():
+    functions = regression.tests_of_class(MyTestClass)
+    assert_equal(set(functions), set(['test_function']))
+    assert type(functions['test_function']) == function_type
+
 
 def test_get_functions_from_example():
     functions = regression.functions_of_class(example_tests.ConvertTest)
