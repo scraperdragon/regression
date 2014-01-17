@@ -46,3 +46,6 @@ def test_get_functions_from_example():
         'test_correct_number_of_rows',
         'test_origin',
         'test_source']))
+
+def test_get_class_from_example():
+    assert_equal(set(regression.classes_of_import(example_tests)), set(["ConvertTest"]))
