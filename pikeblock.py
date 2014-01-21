@@ -1,5 +1,6 @@
 from nose.tools import assert_equal
 import pickle
+import helper
 
 
 class UnexpectedTestError(Exception):
@@ -9,7 +10,6 @@ class UnexpectedTestError(Exception):
 def get_results(function):
     d = (function.__name__, function())
     return d
-
 
 class Case(object):
     def set_up(self):
@@ -29,6 +29,15 @@ class Case(object):
         for function in self.run_these:
             output.update(dict([get_results(function)]))
         self.export_to_file(output)
+
+    def all_tests(self):
+        imported = self.import_from_file()
+        builder = []
+        for f in self.run_these:
+            builder.append(['test_'+f.__name__,
+                           imported[f.__name__],
+                           f])
+        return helper.invoke(builder)
 
     def verify_all_from_file(self):
         imported = self.import_from_file()

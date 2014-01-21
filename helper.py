@@ -11,7 +11,7 @@ class TestSequence(unittest.TestCase):
 
 def _test_generator(a, b):
     def test(self):
-        self.assertEqual(a, b)
+        self.assertEqual(a, b())
     return test
 
 def invoke(tests):
