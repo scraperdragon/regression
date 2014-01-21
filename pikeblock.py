@@ -1,4 +1,3 @@
-from nose.tools import assert_equal
 import pickle
 import helper
 
@@ -19,7 +18,7 @@ class Case(object):
         self.set_up()
         self._filename = "pickled"
 
-    def write_all_to_file(self):
+    def save(self):
         """write all function data to file.
         This function should:
             * only be called when the diffs look good
@@ -29,6 +28,7 @@ class Case(object):
         for function in self.run_these:
             output.update(dict([get_results(function)]))
         self.export_to_file(output)
+        self.verify_all_from_file()
 
     def all_tests(self):
         imported = self.import_from_file()
@@ -46,7 +46,7 @@ class Case(object):
             name, result = get_results(f)
             # TODO: these should be proper nosetest test cases
             try:
-                assert_equal(imported[name], result)
+                assert imported[name] == result
             except KeyError:
                 raise UnexpectedTestError(name)
 
