@@ -34,7 +34,7 @@ class Case(object):
         imported = self.import_from_file()
         builder = []
         for f in self.run_these:
-            builder.append(['test_'+f.__name__,
+            builder.append([f.__name__,
                            imported[f.__name__],
                            f])
         return helper.invoke(builder)

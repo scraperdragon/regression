@@ -2,16 +2,12 @@
 
 import unittest
 
-l = [["foo", "a", "a"],
-     ["bar", "a", "b"],
-     ["lee", "b", "b"]]
-
 class TestSequence(unittest.TestCase):
     pass
 
-def _test_generator(a, b):
+def _test_generator(static, function):
     def test(self):
-        self.assertEqual(a, b())
+        self.assertEqual(static, function())
     return test
 
 def invoke(tests):

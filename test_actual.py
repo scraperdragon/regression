@@ -1,12 +1,4 @@
 import pikeblock
-import unittest
-import helper
-
-#helper_suite = [['pass','a','a'], ['fail','a','b']]
-#TestSequence = helper.invoke(helper_suite)
-
-def test_nope():
-    pass
 
 class RegressionCheck(pikeblock.Case):
     def set_up(self):
