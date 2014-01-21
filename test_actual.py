@@ -1,11 +1,8 @@
 import unittest
 import helper
 
-class TestSequence(unittest.TestCase):
-    pass
-
 helper_suite = [['pass','a','a'], ['fail','a','b']]
-helper.invoke(helper_suite, TestSequence)
+TestSequence = helper.invoke(helper_suite)
 
 def test_nope():
     pass
