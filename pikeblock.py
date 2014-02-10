@@ -2,7 +2,7 @@ import pickle
 import helper
 
 
-class UnexpectedTestError(Exception):
+class TestNotFoundError(Exception):
     pass
 
 
@@ -10,13 +10,14 @@ def get_results(function):
     d = (function.__name__, function())
     return d
 
+
 class Case(object):
     def set_up(self):
         self.run_these = []
 
     def __init__(self):
         self.set_up()
-        self._filename = "pickled"
+        self._filename = "pickled_tests"
 
     def save(self):
         """write all function data to file.
@@ -31,11 +32,12 @@ class Case(object):
         self.verify_all_from_file()
 
     def all_tests(self):
+        """Create nosetests test cases"""
         imported = self.import_from_file()
         builder = []
         for f in self.run_these:
             builder.append([f.__name__,
-                           imported[f.__name__],
+                           imported.get(f.__name__, TestNotFoundError),
                            f])
         return helper.invoke(builder)
 
@@ -44,11 +46,10 @@ class Case(object):
         """Run tests by comparing to previous output"""
         for f in self.run_these:
             name, result = get_results(f)
-            # TODO: these should be proper nosetest test cases
             try:
                 assert imported[name] == result
             except KeyError:
-                raise UnexpectedTestError(name)
+                raise TestNotFoundError(name)
 
     def import_from_file(self):
         """
