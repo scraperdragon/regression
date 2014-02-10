@@ -55,13 +55,9 @@ class Case(object):
         Load past test data from file.
         See export_to_file for doctest.
         """
-        # TODO: protocol
-        try:
-            with open(self._filename, 'r') as fobj:
-                from_pickle = pickle.load(fobj)
-                return from_pickle
-        except IOError, e:
-            return {}
+        with open(self._filename, 'r') as fobj:
+            from_pickle = pickle.load(fobj)
+            return from_pickle
 
     def export_to_file(self, to_pickle):
         """save current test data to file, as a pickle
@@ -73,5 +69,5 @@ class Case(object):
         """
         # TODO: protocol
         with open(self._filename, 'w') as fobj:
-            pickle.dump(to_pickle, fobj)
+            pickle.dump(to_pickle, fobj, 2)
         return to_pickle
