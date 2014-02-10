@@ -4,7 +4,8 @@ class RegressionCheck(pikeblock.Case):
     def set_up(self):
         self.run_these = [self.correct_number_of_rows,
                           self.first_row,
-                          self.sector]
+                          self.sector,
+                          self.is_same]
         self.rows = [{'Commodity': 'Cheese',
                       'Origin': 'Moon',
                       'Figure': 2.0,
@@ -24,6 +25,9 @@ class RegressionCheck(pikeblock.Case):
 
     def sector(self):
         return set(row['Sector'] for row in self.rows)
+
+    def is_same(self):
+        return self.rows
 
 if __name__ == "__main__":
     RegressionCheck().save()
