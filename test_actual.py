@@ -25,7 +25,7 @@ class RegressionCheck(pikeblock.Case):
     def sector(self):
         return set(row['Sector'] for row in self.rows)
 
-TestSequence = RegressionCheck().all_tests()
-
 if __name__ == "__main__":
     RegressionCheck().save()
+
+TestSequence = RegressionCheck().all_tests()
