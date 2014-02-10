@@ -8,7 +8,7 @@ class RegressionCheck(pikeblock.Case):
         self.rows = [{'Commodity': 'Cheese',
                       'Origin': 'Moon',
                       'Figure': 2.0,
-                      'Sector': '000'},
+                      'Sector': '005'},
                      {'Commodity': 'Rust',
                       'Origin': 'Mars',
                       'Figure': 12.0,
