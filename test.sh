@@ -12,6 +12,8 @@ then
     echo "  WORKING: pass"
 else
     echo "  WORKING: fail"
+    echo $WORKING_REAL
+    echo $WORKING_SAVE
     HAPPY="boo... :("
 fi
 
@@ -24,6 +26,8 @@ then
     echo "  SECTOR0: pass"
 else
     echo "  SECTOR0: fail"
+    echo $SECTOR0_REAL
+    echo $SECTOR0_SAVE
     HAPPY="boo... :("
 fi
 
@@ -37,6 +41,8 @@ then
     echo "  LIVE: pass"
 else
     echo "  LIVE: fail"
+    echo $LIVE_REAL
+    echo $LIVE_SAVE
     HAPPY="boo... :("
 fi
 
