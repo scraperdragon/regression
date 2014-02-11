@@ -1,14 +1,10 @@
 import pickle
+import introspect
 import helper
 
 
 class TestNotFoundError(Exception):
     pass
-
-
-def get_results(function):
-    d = (function.__name__, function())
-    return d
 
 
 class Case(object):
@@ -18,6 +14,7 @@ class Case(object):
     def __init__(self):
         self.set_up()
         self._filename = "pickled_tests"
+        self.run_these = introspect.tests_of_instance(self)
 
     def save(self):
         """write all function data to file.
@@ -26,8 +23,8 @@ class Case(object):
             * confirm verify_from_file passes afterwards
         """
         output = {}
-        for function in self.run_these:
-            output.update(dict([get_results(function)]))
+        for name, function in self.run_these.items():
+            output.update({name: function()})
         self.export_to_file(output)
         self.verify_all_from_file()
 
@@ -35,19 +32,18 @@ class Case(object):
         """Create nosetests test cases"""
         imported = self.import_from_file()
         builder = []
-        for f in self.run_these:
-            builder.append([f.__name__,
-                           imported.get(f.__name__, TestNotFoundError),
-                           f])
+        for name, function in self.run_these.items():
+            builder.append([name,
+                           imported.get(name, TestNotFoundError),
+                           function])
         return helper.invoke(builder)
 
     def verify_all_from_file(self):
         imported = self.import_from_file()
         """Run tests by comparing to previous output"""
-        for f in self.run_these:
-            name, result = get_results(f)
+        for name, function in self.run_these.items():
             try:
-                assert imported[name] == result
+                assert imported[name] == function()
             except KeyError:
                 raise TestNotFoundError(name)
 
