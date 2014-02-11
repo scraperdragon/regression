@@ -12,7 +12,7 @@ then
     echo "  WORKING: pass"
 else
     echo "  WORKING: fail"
-    $HAPPY="boo... :("
+    HAPPY="boo... :("
 fi
 
 echo "It fails the tests if the data is changed"
@@ -24,7 +24,7 @@ then
     echo "  SECTOR0: pass"
 else
     echo "  SECTOR0: fail"
-    $HAPPY="boo... :("
+    HAPPY="boo... :("
 fi
 
 
@@ -37,7 +37,7 @@ then
     echo "  LIVE: pass"
 else
     echo "  LIVE: fail"
-    $HAPPY="boo... :("
+    HAPPY="boo... :("
 fi
 
 echo $HAPPY
