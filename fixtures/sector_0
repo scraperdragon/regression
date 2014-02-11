@@ -1,0 +1,36 @@
+..FF
+======================================================================
+FAIL: test_is_same (test_actual.TestSequence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dragon/dev/regression/helper.py", line 10, in test
+    self.assertEqual(static, function())
+AssertionError: Lists differ: [{'Origin': 'Moon', 'Sector': ... != [{'Origin': 'Moon', 'Sector': ...
+
+First differing element 1:
+{'Origin': 'Mars', 'Sector': '001', 'Commodity': 'Rust', 'Figure': 12.0}
+{'Origin': 'Mars', 'Sector': '000', 'Figure': 12.0, 'Commodity': 'Rust'}
+
+  [{'Commodity': 'Cheese', 'Figure': 2.0, 'Origin': 'Moon', 'Sector': '005'},
+-  {'Commodity': 'Rust', 'Figure': 12.0, 'Origin': 'Mars', 'Sector': '001'}]
+?                                                                       ^
+
++  {'Commodity': 'Rust', 'Figure': 12.0, 'Origin': 'Mars', 'Sector': '000'}]
+?                                                                       ^
+
+
+======================================================================
+FAIL: test_sector (test_actual.TestSequence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dragon/dev/regression/helper.py", line 10, in test
+    self.assertEqual(static, function())
+AssertionError: Items in the first set but not the second:
+'001'
+Items in the second set but not the first:
+'000'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+FAILED (failures=2)

@@ -13,7 +13,7 @@ class RegressionCheck(pikeblock.Case):
                      {'Commodity': 'Rust',
                       'Origin': 'Mars',
                       'Figure': 12.0,
-                      'Sector': '001'}]
+                      'Sector': '000'}]
 
     def correct_number_of_rows(self):
         return len(self.rows)
