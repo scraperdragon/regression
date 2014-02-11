@@ -1,0 +1,3 @@
+Run test.sh for tests
+Pickleview helps you view a test file: pickleview file test-regex
+see test_actual for example usage
