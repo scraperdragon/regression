@@ -9,11 +9,11 @@ class TestNotFoundError(Exception):
 
 class Case(object):
     def set_up(self):
-        self.run_these = []
+        pass
 
     def __init__(self):
+        self.filename = "pickled_tests"
         self.set_up()
-        self._filename = "pickled_tests"
         self.run_these = introspect.tests_of_instance(self)
 
     def save(self):
@@ -52,19 +52,19 @@ class Case(object):
         Load past test data from file.
         See export_to_file for doctest.
         """
-        with open(self._filename, 'r') as fobj:
+        with open(self.filename, 'r') as fobj:
             from_pickle = pickle.load(fobj)
             return from_pickle
 
     def export_to_file(self, to_pickle):
         """save current test data to file, as a pickle
         >>> case = Case()
-        >>> case._filename = '__doctest_import'
+        >>> case.filename = '__doctest_import'
         >>> Case().export_to_file([12, "ab"])
         >>> Case().import_from_file()
         [12, 'ab']
         """
         # TODO: protocol
-        with open(self._filename, 'w') as fobj:
+        with open(self.filename, 'w') as fobj:
             pickle.dump(to_pickle, fobj, 2)
         return to_pickle
